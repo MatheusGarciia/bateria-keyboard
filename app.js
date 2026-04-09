@@ -1,15 +1,8 @@
 let buttons = document.querySelectorAll('.drum')
 
-
-for(let i = 0; i < buttons.length; i++){
-    buttons[i].addEventListener('click', handleClick)
-}
-
-function handleClick(){
+function makeSounds(key){
     
-    let buttonInnerHTML = this.innerHTML
-
-    switch (buttonInnerHTML) {
+    switch (key) {
         case 'w':
             let tom1 = new Audio('sounds/tom-1.mp3')
             tom1.play()
@@ -51,3 +44,17 @@ function handleClick(){
     }
 
 }
+
+for(let i = 0; i < buttons.length; i++){
+    buttons[i].addEventListener('click', function(){
+        
+        let buttonInnerHTML = this.innerHTML
+        
+        makeSounds(buttonInnerHTML)
+    
+    })
+}
+
+document.addEventListener('keydown', function(event){
+    makeSounds(event.key)
+})
