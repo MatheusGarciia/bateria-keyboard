@@ -51,10 +51,24 @@ for(let i = 0; i < buttons.length; i++){
         let buttonInnerHTML = this.innerHTML
         
         makeSounds(buttonInnerHTML)
+
+        buttonAnimation(buttonInnerHTML)
     
     })
 }
 
 document.addEventListener('keydown', function(event){
     makeSounds(event.key)
+
+    buttonAnimation(event.key)
 })
+
+function buttonAnimation(currentKey){
+    let activeButton = document.querySelector('.' + currentKey)
+
+    activeButton.classList.add('pressed')
+
+    setTimeout(function(){
+        activeButton.classList.remove('pressed')
+    }, 100)
+}
